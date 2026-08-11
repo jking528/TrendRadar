@@ -927,9 +927,16 @@ class NewsAnalyzer:
         now = self.ctx.get_time()
         print(f"当前北京时间: {now.strftime('%Y-%m-%d %H:%M:%S')}")
 
-        if not self.ctx.config["ENABLE_CRAWLER"]:
-            print("爬虫功能已禁用（ENABLE_CRAWLER=False），程序退出")
+        # 检查是否至少有一个数据源启用（热榜平台 或 RSS）
+        has_platforms = self.ctx.config.get("ENABLE_CRAWLER", False)
+        has_rss = self.ctx.config.get("RSS", {}).get("ENABLED", False)
+        if not has_platforms and not has_rss:
+            print("所有数据源均已禁用（热榜平台和 RSS 均未启用），程序退出")
             return False
+        if not has_platforms:
+            print("热榜平台已禁用（ENABLE_CRAWLER=False），仅抓取 RSS 数据")
+        if not has_rss:
+            print("RSS 已禁用，仅抓取热榜平台数据")
 
         has_notification = self._has_notification_configured()
         if not self.ctx.config["ENABLE_NOTIFICATION"]:
