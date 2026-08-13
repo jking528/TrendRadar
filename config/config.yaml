@@ -151,7 +151,7 @@ rss:
 
     - id: "phnom-penh-post"
       name: "金边邮报"
-      url: "https://phnompenhpost.com/feed/"
+      url: "http://localhost:1200/phnompenhpost"
 
     - id: "khmer-times"
       name: "高棉时报"
@@ -252,7 +252,7 @@ rss:
     # ── 菲律宾（Philippines）──
     - id: "inquirer"
       name: "每日问询者报"
-      url: "https://inquirer.net/feed/"
+      url: "http://localhost:1200/inquirer"
 
     - id: "philstar"
       name: "菲律宾星报"
@@ -701,7 +701,7 @@ advanced:
   # RSS 设置
   rss:
     request_interval: 1000            # 请求间隔（毫秒）
-    timeout: 15                       # 请求超时（秒）
+    timeout: 90                       # 请求超时（秒）
     use_proxy: false                  # 是否使用代理（true=启用, false=不使用）
     proxy_url: ""                     # RSS 专属代理（留空则使用 crawler.default_proxy）
 

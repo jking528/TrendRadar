@@ -1,6 +1,6 @@
 {
   "version": "6.10.0",
-  "generated_at": "2026-07-27T13:17:55.748919+00:00",
+  "generated_at": "2026-08-11T08:53:58.837333+00:00",
   "config_path": "config/config.yaml",
   "summary": {
     "pass": 9,
@@ -37,7 +37,7 @@
     {
       "status": "pass",
       "item": "调度配置",
-      "detail": "调度解析成功（report_mode=current, ai_mode=follow_report）"
+      "detail": "调度解析成功（report_mode=incremental, ai_mode=follow_report）"
     },
     {
       "status": "warn",
