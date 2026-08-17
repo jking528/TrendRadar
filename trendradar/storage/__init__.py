@@ -28,6 +28,14 @@ except ImportError:
     RemoteStorageBackend = None
     HAS_REMOTE = False
 
+# MySQL 同步后端可选导入（需要 pymysql）
+try:
+    from trendradar.storage.mysql import MySQLSyncBackend
+    HAS_MYSQL = True
+except ImportError:
+    MySQLSyncBackend = None
+    HAS_MYSQL = False
+
 __all__ = [
     # 基础类
     "StorageBackend",
@@ -43,6 +51,8 @@ __all__ = [
     "LocalStorageBackend",
     "RemoteStorageBackend",
     "HAS_REMOTE",
+    "MySQLSyncBackend",
+    "HAS_MYSQL",
     # 管理器
     "StorageManager",
     "get_storage_manager",

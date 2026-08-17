@@ -138,6 +138,7 @@ class RSSData:
     items: Dict[str, List[RSSItem]]             # 按 feed_id 分组的条目
     id_to_name: Dict[str, str] = field(default_factory=dict)   # ID到名称映射
     failed_ids: List[str] = field(default_factory=list)        # 失败的ID
+    id_to_url: Dict[str, str] = field(default_factory=dict)    # ID到订阅地址映射（feed_url）
 
     def to_dict(self) -> Dict[str, Any]:
         """转换为字典"""
@@ -151,6 +152,7 @@ class RSSData:
             "items": items_dict,
             "id_to_name": self.id_to_name,
             "failed_ids": self.failed_ids,
+            "id_to_url": self.id_to_url,
         }
 
     @classmethod
@@ -167,6 +169,7 @@ class RSSData:
             items=items,
             id_to_name=data.get("id_to_name", {}),
             failed_ids=data.get("failed_ids", []),
+            id_to_url=data.get("id_to_url", {}),
         )
 
     def get_total_count(self) -> int:

@@ -160,6 +160,7 @@ class RSSFetcher:
         """
         all_items: Dict[str, List[RSSItem]] = {}
         id_to_name: Dict[str, str] = {}
+        id_to_url: Dict[str, str] = {}
         failed_ids: List[str] = []
 
         # 使用配置的时区
@@ -179,6 +180,7 @@ class RSSFetcher:
             items, error = self.fetch_feed(feed)
 
             id_to_name[feed.id] = feed.name
+            id_to_url[feed.id] = feed.url
 
             if error:
                 failed_ids.append(feed.id)
@@ -194,6 +196,7 @@ class RSSFetcher:
             items=all_items,
             id_to_name=id_to_name,
             failed_ids=failed_ids,
+            id_to_url=id_to_url,
         )
 
     @classmethod

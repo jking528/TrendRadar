@@ -187,6 +187,7 @@ class AppContext:
             remote_config = storage_config.get("REMOTE", {})
             local_config = storage_config.get("LOCAL", {})
             pull_config = storage_config.get("PULL", {})
+            mysql_config = storage_config.get("MYSQL", {})
 
             self._storage_manager = get_storage_manager(
                 backend_type=storage_config.get("BACKEND", "auto"),
@@ -205,6 +206,14 @@ class AppContext:
                 pull_enabled=pull_config.get("ENABLED", False),
                 pull_days=pull_config.get("DAYS", 7),
                 timezone=self.timezone,
+                mysql_config={
+                    "enabled": mysql_config.get("ENABLED", False),
+                    "host": mysql_config.get("HOST", "127.0.0.1"),
+                    "port": mysql_config.get("PORT", 3306),
+                    "user": mysql_config.get("USER", "root"),
+                    "password": mysql_config.get("PASSWORD", ""),
+                    "database": mysql_config.get("DATABASE", ""),
+                },
             )
         return self._storage_manager
 

@@ -358,6 +358,7 @@ def _load_storage_config(config_data: Dict) -> Dict:
     local = storage.get("local", {})
     remote = storage.get("remote", {})
     pull = storage.get("pull", {})
+    mysql = storage.get("mysql", {})
 
     txt_enabled_env = _get_env_bool("STORAGE_TXT_ENABLED")
     html_enabled_env = _get_env_bool("STORAGE_HTML_ENABLED")
@@ -388,6 +389,14 @@ def _load_storage_config(config_data: Dict) -> Dict:
         "PULL": {
             "ENABLED": pull_enabled_env if pull_enabled_env is not None else pull.get("enabled", False),
             "DAYS": pull_days_env if pull_days_env is not None else pull.get("days", 7),
+        },
+        "MYSQL": {
+            "ENABLED": mysql.get("enabled", False),
+            "HOST": _get_env_str("MYSQL_HOST") or mysql.get("host", "127.0.0.1"),
+            "PORT": int(_get_env_str("MYSQL_PORT") or mysql.get("port", 3306)),
+            "USER": _get_env_str("MYSQL_USER") or mysql.get("user", "root"),
+            "PASSWORD": _get_env_str("MYSQL_PASSWORD") or mysql.get("password", ""),
+            "DATABASE": _get_env_str("MYSQL_DATABASE") or mysql.get("database", ""),
         },
     }
 
